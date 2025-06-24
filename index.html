@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where in the world?</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/output.css">
+    <link rel="stylesheet" href="./css/normalize.css">
+</head>
+<body class="min-h-screen bg-base-100">
+    <!-- Header -->
+    <header class="navbar bg-base-100 shadow-lg px-4 lg:px-8">
+        <div class="navbar-start">
+            <h1 class="text-xl lg:text-2xl font-bold">Where in the world?</h1>
+        </div>
+        <div class="navbar-end">
+            <button id="theme-toggle" class="btn btn-ghost gap-2">
+                <img src="./images/Path (1).png" alt=""><i id="theme-icon" class="fas fa-moon"></i>
+                <span id="theme-text">Dark Mode</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8">
+        <!-- Countries List View -->
+        <div id="countries-list-view">
+            <!-- Filter Section -->
+            <div class="flex flex-col lg:flex-row gap-6 mb-8">
+                <!-- Search Input -->
+                <div class="search-container flex-1 max-w-md">
+                    <i class="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        placeholder="Search for a country..." 
+                        class="input input-bordered w-full search-input bg-base-100"
+                    />
+                </div>
+
+                <!-- Region Filter -->
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-outline gap-2 min-w-48">
+                        <span id="filter-text">Filter by Region</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg border border-base-300">
+                        <li><a onclick="filterByRegion('')">All Regions</a></li>
+                        <li><a onclick="filterByRegion('Africa')">Africa</a></li>
+                        <li><a onclick="filterByRegion('Americas')">Americas</a></li>
+                        <li><a onclick="filterByRegion('Asia')">Asia</a></li>
+                        <li><a onclick="filterByRegion('Europe')">Europe</a></li>
+                        <li><a onclick="filterByRegion('Oceania')">Oceania</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Countries-->
+            <div id="countries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Skeleton loaders will be inserted here -->
+            </div>
+
+            <!-- No Message -->
+            <div id="no-results" class="text-center py-20 hidden">
+                <div class="text-6xl mb-4">🌍</div>
+                <h3 class="text-2xl font-bold mb-2">No countries found</h3>
+                <p class="text-base-content/70">Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+
+        <!-- Country  -->
+        <div id="country-detail-view" class="hidden">
+            <!-- Back Button -->
+            <div class="mb-8">
+                <button id="back-button" class="btn btn-outline gap-2">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+            </div>
+
+            <div id="country-detail-content" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            </div>
+
+            <div id="detail-loading" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center hidden">
+                <div class="w-full">
+                    <div class="skeleton aspect-[4/3] lg:aspect-[3/2] w-full rounded-lg"></div>
+                </div>
+                
+                <div class="w-full space-y-6">
+                    <div class="skeleton h-12 w-3/4"></div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <div class="skeleton h-4 w-full"></div>
+                            <div class="skeleton h-4 w-5/6"></div>
+                            <div class="skeleton h-4 w-4/5"></div>
+                            <div class="skeleton h-4 w-full"></div>
+                            <div class="skeleton h-4 w-3/4"></div>
+                        </div>
+                        
+            
+                        <div class="space-y-3">
+                            <div class="skeleton h-4 w-full"></div>
+                            <div class="skeleton h-4 w-4/5"></div>
+                            <div class="skeleton h-4 w-5/6"></div>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <div class="skeleton h-4 w-32 mb-4"></div>
+                        <div class="flex flex-wrap gap-2">
+                            <div class="skeleton h-8 w-20"></div>
+                            <div class="skeleton h-8 w-24"></div>
+                            <div class="skeleton h-8 w-16"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
+
+
+
