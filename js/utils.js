@@ -58,6 +58,7 @@ export function showDetailView() {
 export function showSkeletonLoaders(show = true) {
     if (show) {
         countriesGrid.innerHTML = '';
+        // Create 12 skeleton cards
         for (let i = 0; i < 12; i++) {
             const skeletonCard = createSkeletonCard();
             countriesGrid.appendChild(skeletonCard);
@@ -154,6 +155,7 @@ export function renderCountryDetail(country) {
     const flagAlt = country.flags.alt || `Flag of ${country.name.common}`;
     
     countryDetailContent.innerHTML = `
+        <!-- Flag Image -->
         <div class="w-full">
             <div class="aspect-[4/3] lg:aspect-[3/2] w-full overflow-hidden">
                 <img 
@@ -165,10 +167,12 @@ export function renderCountryDetail(country) {
             </div>
         </div>
         
+        <!-- Country Information -->
         <div class="w-full space-y-6">
             <h1 class="text-3xl lg:text-4xl font-bold">${country.name.common}</h1>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Left Column -->
                 <div class="space-y-3">
                     <p class="text-sm lg:text-base">
                         <span class="font-semibold">Native Name:</span> 
@@ -192,6 +196,7 @@ export function renderCountryDetail(country) {
                     </p>
                 </div>
                 
+                <!-- Right Column -->
                 <div class="space-y-3">
                     <p class="text-sm lg:text-base">
                         <span class="font-semibold">Top Level Domain:</span> 
@@ -213,9 +218,12 @@ export function renderCountryDetail(country) {
                     <p class="text-sm lg:text-base font-semibold mb-4">Border Countries:</p>
                     <div class="flex flex-wrap gap-2">
                         ${country.borders.map(border => `
-                            <span class="px-3 py-1 bg-base-200 text-base-content rounded-md text-sm border border-base-300">
+                            <button 
+                                class="border-country-tag" 
+                                onclick="window.appHandlers.showCountryDetail('${border}')"
+                            >
                                 ${getCountryNameByCode(border)}
-                            </span>
+                            </button>
                         `).join('')}
                     </div>
                 </div>
@@ -270,7 +278,6 @@ export function createCountryCard(country) {
         </div>
     `;
 }
-
 function getCurrentView() {
     return countriesListView.classList.contains('hidden') ? 'detail' : 'list';
 }
